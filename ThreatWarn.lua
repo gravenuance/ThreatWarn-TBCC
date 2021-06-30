@@ -27,10 +27,9 @@ local function tw_combat_log(...)
       local msg = ">> " .. spell_name .. " " .. miss_type .. " <<"
       if IsInRaid() then
         SendChatMessage(msg,"RAID")
-      elseif IsInGroup() then
+      end
+      if IsInGroup() then
         SendChatMessage(msg,"PARTY")
-      else
-        SendChatMessage(msg,"SAY")
       end
     end
   end
