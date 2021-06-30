@@ -24,7 +24,7 @@ end
 local function tw_combat_log(...)
   local timestamp, combat_event, _, src_guid, src_name, src_flags, src_raid_flags, dst_guid, dst_name, dst_flags, dst_raid_flags = ...
   local spell_id, spell_name = select(12, ...)
-  --local spell_id = select(7, GetSpellInfo(spell_name))
+  --local spell_type = select(7, GetSpellInfo(spell_name))
   if is_debugging and ((src_guid == player_guid or src_guid == UnitGUID("target"))) and spell_id == 33987 then
       print(spell_id)
       print(spell_name)
@@ -34,7 +34,8 @@ local function tw_combat_log(...)
   if (spell_id == 33987 or spell_id == 30356 or spell_id == 30357) and combat_event == "SPELL_MISSED" and src_guid == player_guid then
     local get_time = GetTime()
     if get_time - unit_was_affecting_combat_when <= 10 then
-      local msg = ">> " .. spell_name .. " PARRIED/MISSED/DODGED <<"
+      local miss_type = select(15, ...)
+      local msg = ">> " .. spell_name .. " " .. miss_type .. " <<"
       if IsInRaid() then
         SendChatMessage(msg,"RAID")
       elseif IsInGroup() then
