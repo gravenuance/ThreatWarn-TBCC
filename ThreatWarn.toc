@@ -1,0 +1,8 @@
+## Interface: 20501
+## Title: |cFFFFB6C1ThreatWatch|r
+## Notes: Lets your group know when you suck.
+## Author: Dramamama
+## Version: 1.0
+## DefaultState: Enabled
+
+ThreatWarn.lua
