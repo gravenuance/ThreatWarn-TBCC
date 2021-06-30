@@ -19,7 +19,7 @@ local function tw_on_load(self)
   print("|cFFFFB6C1ThreatWarn|r loaded. Made by Dramamama - Earthshaker.")
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
   is_debugging = true;
-  player_guid = UnitGuid("player")
+  player_guid = UnitGUID("player")
 end
 
 local event_handler = {
