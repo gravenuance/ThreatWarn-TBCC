@@ -45,7 +45,7 @@ local function tw_combat_log(...)
 end
 
 local function tw_on_load(self)
-  print("|cFFFFB6C1ThreatWarn|r loaded. Made by Dramamama - Earthshaker.")
+  print("|cFFFFB6C1ThreatWarn|r loaded.")
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
   is_debugging = false;
   player_guid = UnitGUID("player")
