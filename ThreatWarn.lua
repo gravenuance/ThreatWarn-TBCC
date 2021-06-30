@@ -2,17 +2,18 @@ local player_guid
 local unit_was_affecting_combat
 local unit_was_affecting_combat_when
 
+local timeSinceLastUpdate = 0
 local combatInterval = 0.1
 local function tw_combat_update(self, elapsed)
-    self.timeSinceLastUpdate = self.timeSinceLastUpdate + elapsed
-    if self.timeSinceLastUpdate >= combatInterval then
+    timeSinceLastUpdate = timeSinceLastUpdate + elapsed
+    if timeSinceLastUpdate >= combatInterval then
         if (UnitAffectingCombat("player")) and unit_was_affecting_combat == false then
           unit_was_affecting_combat_when = GetTime()
           unit_was_affecting_combat = true
-        elseif (UnitAffectingCombat("player")) and unit_was_affecting_combat == true then
+        elseif not (UnitAffectingCombat("player")) and unit_was_affecting_combat == true then
           unit_was_affecting_combat = false
         end
-        self.timeSinceLastUpdate = 0
+        timeSinceLastUpdate = 0
     end
 end
 
@@ -56,6 +57,6 @@ if not tw_frame then
   CreateFrame("Frame","tw_frame",UIParent)
 end
 tw_frame:SetScript("OnEvent",tw_on_event)
-tw_frame:RegisterEvent("PLAYER_LOGIN")
 tw_frame:SetScript('OnUpdate', tw_combat_update)
-tw_frame.timeSinceLastUpdate = 0
+tw_frame:RegisterEvent("PLAYER_LOGIN")
+
