@@ -18,7 +18,7 @@ local function tw_combat_update(self, elapsed)
 end
 
 local function tw_combat_log(...)
-  local timestamp, combat_event, _, src_guid, src_name, src_flags, src_raid_flags, dst_guid, dst_name, dst_flags, dst_raid_flags = ...
+  local _, combat_event, _, src_guid = ...
   local spell_id, spell_name = select(12, ...)
   if (spell_id == 33987 or spell_id == 30356 or spell_id == 30357) and combat_event == "SPELL_MISSED" and src_guid == player_guid then
     local get_time = GetTime()
