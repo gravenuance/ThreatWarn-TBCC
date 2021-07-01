@@ -4,7 +4,7 @@ local unit_was_affecting_combat_when
 
 local timeSinceLastUpdate = 0
 local combatInterval = 0.1
-local function tw_combat_update(self, elapsed)
+local function tw_combat_update(_, elapsed)
     timeSinceLastUpdate = timeSinceLastUpdate + elapsed
     if timeSinceLastUpdate >= combatInterval then
         if (UnitAffectingCombat("player")) and unit_was_affecting_combat == false then
