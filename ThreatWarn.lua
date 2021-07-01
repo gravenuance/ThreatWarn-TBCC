@@ -20,7 +20,7 @@ end
 local function tw_combat_log(...)
   local _, combat_event, _, src_guid = ...
   local spell_id, spell_name = select(12, ...)
-  if (spell_id == 33987 or spell_id == 30356 or spell_id == 30357 or spell_id == 26996) and combat_event == "SPELL_MISSED" and src_guid == player_guid then
+  if (spell_id == 33987 or spell_id == 30356 or spell_id == 30357 or spell_id == 26996 or spell_id == 32700 or spell_id == 20271) and combat_event == "SPELL_MISSED" and src_guid == player_guid then
     local get_time = GetTime()
     if get_time - unit_was_affecting_combat_when <= 10 then
       local miss_type = select(15, ...)
