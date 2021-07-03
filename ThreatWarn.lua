@@ -17,6 +17,15 @@ local function tw_combat_update(self, elapsed)
     end
 end
 
+local function tw_send_msg(spell_name, miss_type)
+  local msg = ">> " .. spell_name .. " " .. miss_type .. " <<"
+  if IsInRaid() then
+    SendChatMessage(msg,"RAID")
+  elseif IsInGroup() then
+    SendChatMessage(msg,"PARTY")
+  end
+end
+
 local function tw_combat_log(...)
   local _, combat_event, _, src_guid = ...
   local spell_id, spell_name = select(12, ...)
@@ -25,23 +34,11 @@ local function tw_combat_log(...)
       local get_time = GetTime()
       if get_time - unit_was_affecting_combat_when <= 10 then
         local miss_type = select(15, ...)
-        local msg = ">> " .. spell_name .. " " .. miss_type .. " <<"
-        if IsInRaid() then
-          SendChatMessage(msg,"RAID")
-        end
-        if IsInGroup() then
-          SendChatMessage(msg,"PARTY")
-        end
+        tw_send_msg(spell_name, miss_type)
       end
     elseif (spell_id == 31789 or spell_id == 355 or spell_id == 27047) then
       local miss_type = select(15, ...)
-      local msg = ">> " .. spell_name .. " " .. miss_type .. " <<"
-      if IsInRaid() then
-        SendChatMessage(msg,"RAID")
-      end
-      if IsInGroup() then
-        SendChatMessage(msg,"PARTY")
-      end
+      tw_send_msg(spell_name, miss_type)
     end
   end
 end
