@@ -36,10 +36,13 @@ local function tw_combat_log(...)
         local miss_type = select(15, ...)
         tw_send_msg(spell_name, miss_type)
       end
-    elseif (spell_id == 31789 or spell_id == 355 or spell_id == 27047) then
+    elseif (spell_id == 31789 or spell_id == 355 or spell_id == 6795) then
       local miss_type = select(15, ...)
       tw_send_msg(spell_name, miss_type)
     end
+  end
+  if (spell_id == 5209 and combat_event == "SPELL_CAST_SUCCESS") then
+    tw_send_msg(spell_name, "CAST")
   end
 end
 
