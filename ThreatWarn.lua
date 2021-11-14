@@ -41,7 +41,7 @@ local function tw_combat_log(...)
       tw_send_msg(spell_name, miss_type)
     end
   end
-  if (spell_id == 5209 and combat_event == "SPELL_CAST_SUCCESS") then
+  if (src_guid == player_guid and spell_id == 5209 and combat_event == "SPELL_CAST_SUCCESS") then
     tw_send_msg(spell_name, "CAST")
   end
 end
