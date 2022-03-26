@@ -34,6 +34,9 @@ local function tw_combat_log(...)
       local get_time = GetTime()
       if get_time - unit_was_affecting_combat_when <= 10 then
         local miss_type = select(15, ...)
+        if (miss_type == "ABSORB") then
+          return
+        end
         tw_send_msg(spell_name, miss_type)
       end
     elseif (spell_id == 31789 or spell_id == 355 or spell_id == 6795) then
