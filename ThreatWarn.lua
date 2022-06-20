@@ -45,7 +45,7 @@ local function tw_combat_log(...)
         tw_send_msg(spell_name, msg)
       else
         local crit = select(21, ...)
-        if crit then
+        if crit and src_guid == player_guid then
           tw_send_msg(spell_name, "CRITICAL")
         end
       end
